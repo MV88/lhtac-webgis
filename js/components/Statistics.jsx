@@ -86,7 +86,9 @@ const Statistics = React.createClass({
             this.props.selectedfeatures.features.length > 0 &&
             this.props.selectedfeatures.request &&
             this.props.selectedfeatures.request.filterOpts) {
-            this.wfsFilterBody = LhtacFilterUtils.processOGCSpatialFilter(this.props.selectedfeatures.request.filterOpts, "1.1.0");
+            // the wfsFilterBody is built from the list of the features in featureselector
+            const attributeName = this.props.activeLayer.fidAttributeName;
+            this.wfsFilterBody = LhtacFilterUtils.processOGCIdFilter(this.props.selectedfeatures.features, attributeName, "OR", "1.1.0");
         }
         if (this.props.selectedfeatures.features.length > 0) {
             selectedFilterLink.onClick = () => { this.downloadFile(); };

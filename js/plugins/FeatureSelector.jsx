@@ -106,13 +106,16 @@ const FeatureSelector = React.createClass({
             // Check SRS & Type
             let sFieldSRS = spatialField.geometry && spatialField.geometry.projection || "EPSG:4326";
             let sFieldType = spatialField.geometry.type || "Polygon";
-
+            // prevGeometry is the area selected in the areaFilter and changes only over there
             let prevGeometry = {
                 coordinates: spatialField.geometry.coordinates,
                 projection: sFieldSRS,
                 type: sFieldType
             };
 
+            // this intersetions refers to the geometry given by the areaFilter and the last area selected with the drawing tool.
+            // in the featureSelector reducer the state is updated doing a xor beetwen the old selected features and the new ones
+            // implementing the toggle of the features (selected or highlghted ones become unselected and unselected ones become selected)
             let intersection = FeatureSelectorUtils.intersectPolygons(prevGeometry, nextProps.geometry);
 
             if (intersection !== undefined) {
@@ -126,9 +129,11 @@ const FeatureSelector = React.createClass({
                 if (this.props.advancedFilterStatus && this.props.queryform.simpleFilterFields && this.props.queryform.simpleFilterFields.length > 0) {
                     filterOpt.simpleFilterFields = this.props.queryform.simpleFilterFields;
                 }
+                // TODO : review and comment following lines
                 let ogcFilter = FilterUtils.toOGCFilter(nextProps.activeLayer.name, filterOpt, "1.1.0");
                 this.props.loadFeatures(nextProps.queryform.searchUrl, ogcFilter, this.addKey, filterOpt);
                 if (!this.addKey) {
+                    // features selected and highlighted will be cleaned if the CTRL button is NOT pressed
                     this.props.changeHighlightStatus('disabled');
                 }
                 this.addKey = false;
