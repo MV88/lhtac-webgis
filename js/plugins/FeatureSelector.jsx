@@ -129,9 +129,8 @@ const FeatureSelector = React.createClass({
                 if (this.props.advancedFilterStatus && this.props.queryform.simpleFilterFields && this.props.queryform.simpleFilterFields.length > 0) {
                     filterOpt.simpleFilterFields = this.props.queryform.simpleFilterFields;
                 }
-                // TODO : review and comment following lines
                 let ogcFilter = FilterUtils.toOGCFilter(nextProps.activeLayer.name, filterOpt, "1.1.0");
-                this.props.loadFeatures(nextProps.queryform.searchUrl, ogcFilter, this.addKey, filterOpt);
+                this.props.loadFeatures(nextProps.queryform.searchUrl, ogcFilter, this.addKey);
                 if (!this.addKey) {
                     // features selected and highlighted will be cleaned if the CTRL button is NOT pressed
                     this.props.changeHighlightStatus('disabled');

@@ -147,7 +147,8 @@
             {
                 "field": "properties.intersection_related",
                 "headerName": "Intersect Related",
-                "width": 70
+                "width": 70,
+                "type" : "boolean"
             },
             {
                 "field": "properties.street1",
@@ -192,12 +193,14 @@
             {
                 "field": "properties.impaired",
                 "headerName": "Impaired",
-                "width": 70
+                "width": 70,
+                "type" : "boolean"
             },
             {
                 "field": "properties.lane_dep",
                 "headerName": "Lane Depart",
-                "width": 70
+                "width": 70,
+                "type" : "boolean"
             },
             {
                 "field": "properties.first_harmful_event",
@@ -262,12 +265,12 @@
             {
                 "field": "properties.traffic_control_device",
                 "headerName": "Traffic Control Device",
-                "width": 100
+                "width": 110
             },
             {
                 "field": "properties.traffic_control_function",
                 "headerName": "Traffic Control Function",
-                "width": 100
+                "width": 110
             },
             {
                 "field": "properties.geometrics_horizontal",
