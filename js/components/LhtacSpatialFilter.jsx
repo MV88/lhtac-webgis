@@ -185,10 +185,11 @@ const SpatialFilter = React.createClass({
                                     onFilter={this.props.actions.zoneFilter}
                                     onChange={this.zoneChange}/></Col>
                               </Row>
-                              <Row>
-                                <Col xs={1}><span/></Col>
-                                <Col xs={11} style={{"marginBottom": "15px", "marginTop": "-10px"}}>{(zone.toolbar) ? this.renderToolbar(zone) : null}</Col>
-                              </Row>
+                              {(zone.toolbar) ?
+                                  (<Row>
+                                      <Col xs={1}><span/></Col>
+                                      <Col xs={11} style={{"marginBottom": "15px", "marginTop": "-10px"}}>{this.renderToolbar(zone)}</Col>
+                                  </Row>) : null}
                             </Grid>
                         </div>
                     );

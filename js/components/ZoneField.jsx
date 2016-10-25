@@ -185,8 +185,10 @@ const ZoneField = React.createClass({
         let label = this.props.label ? (<label>{this.props.label}</label>) : (<span/>);
 
         let error = this.props.error;
-        if (error) {
+        if (error && error.status && error.statusText && error.data) {
             error = typeof error !== "object" ? error : error.status + " " + error.statusText + ": " + error.data;
+        } else {
+            error = typeof error !== "object" ? error : error && error.message || null;
         }
 
         return (

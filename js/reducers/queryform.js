@@ -48,7 +48,6 @@ function queryform(state, action) {
                         open: false,
                         error: null,
                         active: false,
-                        loadingAll: false,
                         checked: false
                     };
 
